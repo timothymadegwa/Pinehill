@@ -32,7 +32,7 @@
                 </a>
                 <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="{% url 'about' %}">Who We Are</a>
-                  <a class="dropdown-item" href="team.html">The Team</a>
+                  <a class="dropdown-item" href="{% url 'team' %}">The Team</a>
                 </div>
               </li>
               <li class="nav-item dropdown">
@@ -47,10 +47,10 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="media.html">Media & Blogs</a>
+                <a class="nav-link" href="{% url 'media' %}">Media & Blogs</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="opportunities.html">Opportunities</a>
+                <a class="nav-link" href="{% url 'opportunities' %}">Opportunities</a>
               </li>
               
             </ul>    
@@ -114,7 +114,7 @@
           </li>
           <li>
             <p>
-              <a href="media.html" style="color: white;">Media Room & Blogs</a>
+              <a href="{% url 'media' %}" style="color: white;">Media Room & Blogs</a>
             </p>
           </li>
         </ul>

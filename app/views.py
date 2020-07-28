@@ -25,5 +25,5 @@ def capacity(request):
 def media(request):
     return render(request, 'app/media.html')
 
-def opportunity(request):
-    return render(request, 'app/opportunity.html')
+def opportunities(request):
+    return render(request, 'app/opportunities.html')
