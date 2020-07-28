@@ -40,10 +40,10 @@
                   Services
                 </a>
                 <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="investment.html">Investment Management</a>
-                  <a class="dropdown-item" href="strategy.html">Strategy Consulting</a>
-                  <a class="dropdown-item" href="risk.html">Risk and Governance</a>
-                  <a class="dropdown-item" href="capacity.html">Capacity Building</a>
+                  <a class="dropdown-item" href="{% url 'investment' %}">Investment Management</a>
+                  <a class="dropdown-item" href="{% url 'strategy' %}">Strategy Consulting</a>
+                  <a class="dropdown-item" href="{% url 'risk' %}">Risk and Governance</a>
+                  <a class="dropdown-item" href="{% url 'capacity' %}">Capacity Building</a>
                 </div>
               </li>
               <li class="nav-item">
@@ -94,22 +94,22 @@
         <ul class="list-unstyled">
           <li>
             <p>
-              <a href="investment.html" style="color: white;">Investment Management</a>
+              <a href="{% url 'investment' %}" style="color: white;">Investment Management</a>
             </p>
           </li>
           <li>
             <p>
-              <a href="strategy.html" style="color: white;">Strategy Consulting</a>
+              <a href="{% url 'strategy' %}" style="color: white;">Strategy Consulting</a>
             </p>
           </li>
           <li>
             <p>
-              <a href="risk.html" style="color: white;">Risk and Governance</a>
+              <a href="{% url 'risk' %}" style="color: white;">Risk and Governance</a>
             </p>
           </li>
           <li>
             <p>
-              <a href="capacity.html" style="color: white;">Capacity Building</a>
+              <a href="{% url 'capacity' %}" style="color: white;">Capacity Building</a>
             </p>
           </li>
           <li>
