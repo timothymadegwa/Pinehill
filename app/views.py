@@ -25,5 +25,8 @@ def capacity(request):
 def media(request):
     return render(request, 'app/media.html')
 
-def opportunities(request):
-    return render(request, 'app/opportunities.html')
+def careers(request):
+    return render(request, 'app/careers.html')
+
+def contact(request):
+    return render(request, 'app/contact.html')
