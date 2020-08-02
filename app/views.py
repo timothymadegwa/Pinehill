@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Team
 
 # Create your views here.
 def index(request):
@@ -8,7 +9,11 @@ def about(request):
     return render(request, 'app/about.html')
 
 def team(request):
-    return render(request, 'app/team.html')
+    team = Team.objects.all()
+    context ={
+        'team' : team
+    }
+    return render(request, 'app/team.html', context)
 
 def investment(request):
     return render(request, 'app/investment.html')

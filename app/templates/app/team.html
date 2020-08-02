@@ -14,77 +14,26 @@
             
               <hr class="featurette-divider">
              <div class="container">
-              <div class="row featurette">
-                <div class="col-md-7">
-                  <h2 class="featurette-heading">Karumba Kinyua <br><span class="text-muted">Managing Partner</span></h2>
-                  <p class="lead">Karumba is a professional with over 19 years practical experience focusing on Monitoring and Evaluation, financial and risk management, 
-                    business development and strategic management.</p> 
-                  <p class="lead">He has a Master of Science in Corporate Real Estate Finance & Strategy and a Bachelor of Commerce (Business Administration). He has extensive experience 
-                    with international and regional institutions in sub-Saharan Africa, Europe and North America.</p>
-                  <p class="lead">He has worked for government agencies, financial institutions, agribusiness firms, faith-based institutions and investments companies.</p>
+               {% if team %}
+               {% for employee in team %}
+                <div class="row featurette">
+                  <div class="col-md-7">
+                    <h2 class="featurette-heading">{{ employee.name}} <br><span class="text-muted">{{ employee.title }}</span></h2>
+                    <p class="lead">{{ employee.profile }}</p> 
+                  </div>
+                  <div class="col-md-5">
+                    <img class="featurette-image img-fluid mx-auto" src="{{ employee.photo.url}}"  height="350" width="350" alt="Generic placeholder image">
+                  </div>
                 </div>
-                <div class="col-md-5">
-                  <img class="featurette-image img-fluid mx-auto" src="images/karumba 1.jpg"  height="350" width="350" alt="Generic placeholder image">
-                </div>
-              </div>
-            
-              <hr class="featurette-divider">
-              <div class="row featurette">
-                <div class="col-md-7">
-                  <h2 class="featurette-heading">Kathrine Njuguna <br><span class="text-muted">Investment Analyst</span></h2>
-                  <p class="lead">Kathrine works as an Investment Analyst handling financial models, investment memos, strategic plans, research and supports the team 
-                    in execution of mandates. She works closely with clients engaging them through different phases of their business cycle from ideation, start-up, 
-                    commercialization, growth, restructuring and development.<br> She has handled a variety of clients in different sectors including agribusiness, finance,
-                     health, food and beverage, manufacturing, training and consultancy. She holds a Bachelor’s degree in Economics and Finance from Kenyatta University and is currently a CFA Level 2 Exam Candidate.</p>
-                </div>
-                <div class="col-md-5">
-                  <img class="featurette-image img-fluid mx-auto" src="images/Kate.jpg" height="350" width="350" alt="Generic placeholder image">
-                </div>
-              </div>
-            
-              <hr class="featurette-divider">
-              <div class="row featurette">
-                <div class="col-md-7">
-                  <h2 class="featurette-heading">Everlyne Ombasa <br><span class="text-muted">Research Analyst</span></h2>
-                  <p class="lead">Everlyne is a flexible and ambitious individual with an industrious work ethic.  Looking to make impactful contributions in the field of research and data analysis 
-                    that will yield informative and innovative solutions to the corporate business industry. Pursues to positively touch individuals and communities by providing comprehensive and 
-                    accurate data on social and economic topics that will result in life-changing engagements for the local communities. 
-                    She is experienced in applied research and data management, able to manipulate large complex data sets using a variety of applications (SPSS, STATA, Excel, Microsoft Office suite). 
-                    Holds a Bachelor of Arts degree in Economics.
-                </div>
-                <div class="col-md-5">
-                  <img class="featurette-image img-fluid mx-auto" src="images/image.png" height="350" width="350" alt="Generic placeholder image">
-                </div>
-              </div>
-            
-              <hr class="featurette-divider">
-              <div class="row featurette">
-                <div class="col-md-7">
-                  <h2 class="featurette-heading">Karen Wachira <br><span class="text-muted">Risk Analyst</span></h2>
-                  <p class="lead">Karen is a Risk Analyst with experience in finance, actuarial analysis, Investment Analysis, Risk Analysis, Financial modelling and Business Continuity Planning.
+                <hr>
+                {% endfor %}
 
-                    She holds a Bachelor Science in Actuarial Science from Jomo Kenyatta University of Agriculture and Technology and has passed the CFA Exam Level 1.
-                    </p>
-                </div>
-                <div class="col-md-5">
-                  <img class="featurette-image img-fluid mx-auto" src="images/Karen.jpg" height="350" width="350" alt="Generic placeholder image">
-                </div>
-              </div>
-            
-              <hr class="featurette-divider">
-            
-                    <div class="row featurette">
-                      <div class="col-md-7">
-                        <h2 class="featurette-heading">Timothy Madegwa <br><span class="text-muted">Risk And ICT Consultant</span></h2>
-                        <p class="lead">Timothy holds a Bachelor of Science in Mathematics and Computer Science from the Jomo Kenyatta University of Agriculture and Technology. He is equipped with many skills which include Enterprise Risk Management, Web Development,
-                           Machine Learning, Data Analytics and Data Science. He has great passion in bring Risk Management and ICT together to build smart systems that make work easier.</p>
-                      </div>
-                      <div class="col-md-5">
-                        <img class="featurette-image img-fluid mx-auto" src="images/tim.jpg" height="350" width="350" alt="Generic placeholder image">
-                      </div>
-                    </div>
-            
-                    <hr class="featurette-divider">
+               {%else%}
+               <div class="col-md-12">
+                 <p><h3>No Employees to display</h3></p>
+               </div>
+               {% endif%}
+              
             </div>
             
               
