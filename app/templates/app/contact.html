@@ -3,10 +3,15 @@
 
 {% block content %}
 <div class="container">
+  {% if message %}
+    <div class="alert alert-success" role="alert">
+        {{ message}}
+      </div><br>
+    {% endif %}
     <br><h2 class="text-center text-info"><strong>CONTACT US</strong></h2><hr>
     <div class="card card-body bg-light">
-        <form action="#">
-            <form>
+             <form action="{% url 'contact' %}", method="post">
+               {%csrf_token%}
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="firstName">First Name</label>
