@@ -46,5 +46,5 @@ def contact(request):
 
         reply = {'message': reply_body }
 
-        return render(request, 'app/contact.html',  reply)
-    return render(request, 'app/contact.html')
+        return render(request, 'app/careers.html',  reply)
+    return render(request, 'app/careers.html')
