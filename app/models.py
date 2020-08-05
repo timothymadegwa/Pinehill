@@ -8,7 +8,7 @@ class Team(models.Model):
     title = models.CharField(max_length=100)
     profile = models.TextField()
     photo = models.ImageField(upload_to='photos/team')
-    email = models.CharField(max_length=100)
+    email = models.CharField(max_length=100, blank=True)
     rank = models.IntegerField()
     is_consultant = models.BooleanField(default=False)
 

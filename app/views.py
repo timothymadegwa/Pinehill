@@ -10,8 +10,10 @@ def about(request):
     return render(request, 'app/about.html')
 
 def team(request):
-    team = Team.objects.all()
-    context ={'team' : team}
+    team = Team.objects.all().filter(is_consultant=False).order_by('rank')
+    consultants = Team.objects.all().filter(is_consultant=True).order_by('rank')
+    context ={'team' : team,
+            'consultants': consultants}
     return render(request, 'app/team.html', context)
 
 def investment(request):

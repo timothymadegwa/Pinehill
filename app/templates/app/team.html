@@ -11,6 +11,7 @@
           </div>
         </section><br>
         <div class="container">
+          <h2 class="text-center text-info"><strong>CORE TEAM</strong></h2>
             
               <hr class="featurette-divider">
              <div class="container">
@@ -33,6 +34,28 @@
                  <p><h3>No Employees to display</h3></p>
                </div>
                {% endif%}
+
+               <br><h2 class="text-center text-info"><strong>ASSOCIATE CONSULTANTS</strong></h2><hr>
+               {% if consultants %}
+               {% for employee in consultants %}
+               <div class="row featurette">
+                 <div class="col-md-7 order-md-2">
+                   <h2 class="featurette-heading">{{ employee.name}}<br> <span class="text-muted">{{ employee.title }}</span></h2>
+                   <p class="lead">{{ employee.profile }}</p>
+                 </div>
+                 <div class="col-md-5 order-md-1">
+                  <img class="featurette-image mx-auto" src="{{ employee.photo.url}}"  height="350" width="350" alt="Generic placeholder image">
+                   
+                 </div>
+               </div><hr>
+               {% endfor %}
+               {%else%}
+               <div class="col-md-12">
+                 <p><h3>No Associate Consultants to display</h3></p>
+               </div>
+               {% endif %}
+           
+               <hr class="featurette-divider">
               
             </div>
             
