@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Team, Contact
-from datetime import datetime
+from .models import Team, Job
+from datetime import date
 
 # Create your views here.
 def index(request):
@@ -32,4 +32,10 @@ def media(request):
     return render(request, 'app/media.html')
 
 def careers(request):
-    return render(request, 'app/careers.html')
+    current_date = date.today()
+    jobs = Job.objects.filter(is_published=True)
+    context = {
+        'jobs' : jobs,
+        'current_date' : current_date
+    }
+    return render(request, 'app/careers.html', context)

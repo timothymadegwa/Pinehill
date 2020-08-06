@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Team, Contact
+from .models import Team, Job
 
 class TeamAdmin(admin.ModelAdmin):
     list_display = ('id','name', 'email', 'rank','is_consultant', 'title')
@@ -11,8 +11,11 @@ class TeamAdmin(admin.ModelAdmin):
     search_fields = ('name', 'email', 'title')
     list_per_page = 20
 
-class ContactAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'email', 'message', 'contact_date')
-
 admin.site.register(Team, TeamAdmin)
-admin.site.register(Contact, ContactAdmin)
+
+class JobAdmin(admin.ModelAdmin):
+    list_display = ('id','title', 'is_published','closing')
+    list_display_links = ('id','title',)
+    list_editable = ('is_published',)
+
+admin.site.register(Job, JobAdmin)

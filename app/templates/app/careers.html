@@ -8,19 +8,30 @@
                 <p>Pine-Hill Limited is an Equal Opportunity Employer and is committed to the principle of equal employment opportunity 
                   for all employees and to providing employees with a work environment free of discrimination and harassment of any kind 
                   and is committed to abiding by the laws or regulations in the locations where we operate.</p>
-                <h3 class="text-center text-info"><strong>INVESTMENT ASSISTANT (JOB ID - 0001)</strong></h3><hr>
+                  <h3 class="text-center text-info"><strong>OPEN JOBS</strong></h3><hr>
+                {% if jobs %}
+                  {% for job in jobs %}
+                <h4 class="text-center text-info"><strong>{{ job.title }}</strong></h4><hr>
+                <h3 class=" text-info"><strong>Job Description</strong></h3><hr>
+                <ol>
+                {% for description in job.description.split %}
+                <li>{{description}}</li>
+                {% endfor %}
+                </ol>
+                
                 <h3 class=" text-info"><strong>Job Requirements</strong></h3><hr>
                 <ol>
-                    <li>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</li>
-                    <li>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</li>
-                    <li>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</li>
-                    <li>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</li>
-                    <li>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</li>
-                    <li>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</li>
-                    <li>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</li>
+                  {% for requirement in job.requirements.split %}
+                  <li>{{requirement}}</li>
+                  {% endfor %}
                 </ol>
+                {% if current_date > job.closing %}
+                <p><a class="btn btn-info btn-lg disabled" data-toggle="collapse" href="#collapseJob" role="button" aria-expanded="false" aria-controls="collapseJob">Apply</a>
+                </p>
+                {% else %}
                 <p><a class="btn btn-info btn-lg" data-toggle="collapse" href="#collapseJob" role="button" aria-expanded="false" aria-controls="collapseJob">Apply</a>
                 </p>
+                {% endif %}
                 <div class="collapse" id="collapseJob">
                     <div class="card card-body">
                         <form action="#">
@@ -59,6 +70,12 @@
                             </div>
                           </form>  
                     </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="col-md-12">
+                      <p><h3>No open jobs to display</h3></p>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
