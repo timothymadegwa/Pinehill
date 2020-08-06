@@ -48,7 +48,7 @@
           {% if videos %}
           {% for video in videos %}
           <span class="card-deck">
-            <div class="card col-xs-4 video-card">
+            <div class="card col-sm-6">
               <iframe width="300" height="200" src="{{video.link}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               <h5><a href="{{video.link}}" target="_blank">{{video.title}}</a></h5>
             </div>
