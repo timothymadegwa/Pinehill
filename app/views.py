@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Team, Job
+from .models import Team, Job, JobApplication
 from datetime import date
 
 # Create your views here.
@@ -38,4 +38,21 @@ def careers(request):
         'jobs' : jobs,
         'current_date' : current_date
     }
+    if request.method == 'POST':
+        title = request.POST['job_title']
+        f_name = request.POST['first_name']
+        l_name = request.POST['last_name']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        cover_letter = request.POST['cover']
+        cv = request.POST['cv']
+        id = jobs.filter(title__iexact=title)
+        if cover_letter.endswith('.pdf') and cv.endswith('.pdf'):
+            application = JobApplication(title=title, email=email, first_name=f_name, last_name=l_name, phone=phone, cover=cover_letter, cv=cv, job_id=id)
+            application.save()
+        else:
+            error = "Ensure the files uploaded are of pdf format"
+            context['errors'] = error
+            return render(request, 'app/careers.html', context)
+
     return render(request, 'app/careers.html', context)

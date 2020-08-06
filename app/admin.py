@@ -1,7 +1,5 @@
 from django.contrib import admin
-
-# Register your models here.
-from .models import Team, Job
+from .models import Team, Job, JobApplication
 
 class TeamAdmin(admin.ModelAdmin):
     list_display = ('id','name', 'email', 'rank','is_consultant', 'title')
@@ -19,3 +17,10 @@ class JobAdmin(admin.ModelAdmin):
     list_editable = ('is_published',)
 
 admin.site.register(Job, JobAdmin)
+
+class JobApplicationAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', 'first_name', 'last_name', 'email', 'phone')
+    list_display_links = ('id', 'title', 'first_name', 'last_name')
+    list_per_page = 25
+
+admin.site.register(JobApplication, JobApplicationAdmin)

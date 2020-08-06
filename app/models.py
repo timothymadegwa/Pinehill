@@ -17,7 +17,7 @@ class Team(models.Model):
 
 
 class Job(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=100)
     description = models.TextField()
     requirements = models.TextField()
     posted = models.DateField(default=datetime.now)
@@ -26,3 +26,19 @@ class Job(models.Model):
 
     def __str__(self):
         return self.title
+
+class JobApplication(models.Model):
+    title = models.CharField(max_length=100)
+    job_id = models.ForeignKey(Job, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100)
+    cover = models.FileField(upload_to='jobs/covers')
+    cv = models.FileField(upload_to='jobs/cv')
+
+    def __str__(self):
+        return self.first_name + self.last_name
+
+
+    
