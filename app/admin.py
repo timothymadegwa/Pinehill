@@ -2,10 +2,10 @@ from django.contrib import admin
 from .models import Team, Job, JobApplication
 
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ('id','name', 'email', 'rank','is_consultant', 'title')
+    list_display = ('id','name', 'email','is_published', 'rank','is_consultant', 'title')
     list_display_links = ('id','name', 'title')
-    list_editable = ('is_consultant',)
-    list_filter = ('is_consultant',)
+    list_editable = ('is_consultant','is_published')
+    list_filter = ('is_consultant','is_published')
     search_fields = ('name', 'email', 'title')
     list_per_page = 20
 

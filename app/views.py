@@ -10,8 +10,8 @@ def about(request):
     return render(request, 'app/about.html')
 
 def team(request):
-    team = Team.objects.all().filter(is_consultant=False).order_by('rank')
-    consultants = Team.objects.all().filter(is_consultant=True).order_by('rank')
+    team = Team.objects.all().filter(is_consultant=False).order_by('rank').filter(is_published=True)
+    consultants = Team.objects.all().filter(is_consultant=True).order_by('rank').filter(is_published=True)
     context ={'team' : team,
             'consultants': consultants}
     return render(request, 'app/team.html', context)

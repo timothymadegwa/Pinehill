@@ -4,22 +4,30 @@
 {% block content %}
         <div class="container">
           <br>
+          {% if blogs %}
+          {%for blog in blogs%}
           <div class="row mb-2">
             <div class="col-md-12">
               <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
-                  <h4 class="mb-0 text-primary"><strong>Employee Share Ownership Plans (ESOPs) for Entrepreneurs</strong></h4>
-                  <div class="mb-1 text-muted">July 12</div>
-                  <p class="card-text mb-auto">By</p>
-                  <p class="card-text mb-auto text-muted">Karumba Kinyua</p>
+                  <h4 class="mb-0 text-primary"><strong>{{ blog.title }}</strong></h4><br>
+                  <div class="mb-1 text-muted">{{blog.date}}</div>
+                  <p class="card-text">By</p>
+                  <p class="card-text text-muted">{{blog.author.name}}</p>
                   <a href="https://www.linkedin.com/pulse/employee-share-ownership-plans-esops-entrepreneurs-karumba-kinyua/" target="_blank" class="stretched-link">Continue reading</a>
                 </div>
                 <div class="col-md-4 d-none d-sm-block">
-                  <img class="mt-3 mb-3" src="images/karumba 1.jpg" alt="image" width='300' height="200">
+                  <img class="mt-3 mb-3" src="{{blog.author.photo.url}}" alt="image" width='250' height="250">
                 </div>
               </div>
             </div>
           </div>
+          {% endfor %}
+
+          {% endif %}
+
+
+
           {% if external %}
           <hr>
           <h2 class="text-center text-info"><strong>EXTERNAL BLOGS</strong></h2><hr>
