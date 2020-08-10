@@ -10,8 +10,8 @@ def about(request):
     return render(request, 'app/about.html')
 
 def team(request):
-    team = Team.objects.all().filter(is_consultant=False).order_by('rank').filter(is_published=True)
-    consultants = Team.objects.all().filter(is_consultant=True).order_by('rank').filter(is_published=True)
+    team = Team.objects.filter(is_consultant=False).order_by('rank').filter(is_published=True)
+    consultants = Team.objects.filter(is_consultant=True).order_by('rank').filter(is_published=True)
     context ={'team' : team,
             'consultants': consultants}
     return render(request, 'app/team.html', context)
@@ -48,10 +48,12 @@ def careers(request):
         cv = request.POST['cv']
         id = jobs.filter(title__iexact=title)
         if cover_letter.endswith('.pdf') and cv.endswith('.pdf'):
-            application = JobApplication(title=title, email=email, first_name=f_name, last_name=l_name, phone=phone, cover=cover_letter, cv=cv, job_id=id)
+            application = JobApplication(title=title, email=email, first_name=f_name, last_name=l_name, phone=phone, cover=cover_letter, cv=cv)
             application.save()
+            success = "Thank you "+f_name+" for submitting your application"
+            context['success'] = success
         else:
-            error = "Ensure the files uploaded are of pdf format"
+            error = f_name+" , Please ensure the files that you uploaded are in pdf format!"
             context['errors'] = error
             return render(request, 'app/careers.html', context)
 

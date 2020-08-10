@@ -6,6 +6,7 @@ from datetime import date
 class BlogPost(models.Model):
     author = models.ForeignKey(Team, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
+    slug = models.CharField(max_length=100, unique=True)
     image = models.ImageField(upload_to='blogs/images')
     body = RichTextField()
     date = models.DateField(default=date.today)
