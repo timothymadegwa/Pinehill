@@ -37,12 +37,12 @@
                   {% endfor %}
                 </ol>
                 {% if current_date > job.closing %}
-                <p><a class="btn btn-info btn-lg disabled" data-toggle="collapse" href="#collapseJob" role="button" aria-expanded="false" aria-controls="collapseJob">Apply</a>
+                <p><a class="btn btn-info btn-lg disabled" href="#" role="button">Apply</a>
                 </p>
                 {% else %}
                 <p><a class="btn btn-info btn-lg" data-toggle="collapse" href="#collapseJob" role="button" aria-expanded="false" aria-controls="collapseJob">Apply</a>
                 </p>
-                {% endif %}
+                
                 <div class="collapse" id="collapseJob">
                   
                     <div class="card card-body">
@@ -79,11 +79,16 @@
                                   <div class="form-group">
                                     <label for="cv">Attach CV <em class="text-danger">(Only pdf files are allowed, i.e. JOHN_DOE_CV.pdf)</em></label>
                                     <input type="file" class="form-control-file" name="cv" id="cv" accept=".pdf" required>
-                                  </div>                                
-                                <button type="submit" class="btn btn-info btn-lg">Submit Application</button>                        
+                                  </div>
+                                  {% if current_date > job.closing %}                                
+                                <button type="submit" class="btn btn-info btn-lg disabled">Submit Application</button> 
+                                  {% else %}
+                                <button type="submit" class="btn btn-info btn-lg">Submit Application</button>
+                                  {% endif %}                       
                             </div>
                           </form>  
                     </div><hr>
+                    {% endif %}
                     {% endfor %}
                     {% else %}
                     <div class="col-md-12">
@@ -93,7 +98,6 @@
                 </div>
             </div>
         </div>
-    </div>
   </body>
   <br>
   {% endblock content%}

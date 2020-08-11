@@ -15,12 +15,14 @@ class JobAdmin(admin.ModelAdmin):
     list_display = ('id','title', 'is_published','closing')
     list_display_links = ('id','title',)
     list_editable = ('is_published',)
+    search_fields = ('title',)
 
 admin.site.register(Job, JobAdmin)
 
 class JobApplicationAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'first_name', 'last_name', 'email', 'phone')
     list_display_links = ('id', 'title', 'first_name', 'last_name')
+    search_fields = ('title', 'email', 'first_name', 'last_name')
     list_per_page = 25
 
 admin.site.register(JobApplication, JobApplicationAdmin)

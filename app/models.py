@@ -29,6 +29,7 @@ class Job(models.Model):
         return self.title
 
 class JobApplication(models.Model):
+    job_id = models.ForeignKey(Job, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
