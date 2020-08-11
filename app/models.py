@@ -18,7 +18,7 @@ class Team(models.Model):
 
 
 class Job(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, unique=True)
     description = models.TextField()
     requirements = models.TextField()
     posted = models.DateField(default=datetime.now)
