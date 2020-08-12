@@ -48,7 +48,7 @@ def careers(request):
         cv = request.POST['cv']
         if cover_letter.endswith('.pdf') and cv.endswith('.pdf'):
             job = Job.objects.filter(title__iexact=title)[0]
-            application = JobApplication(job_id=job,title=title, email=email, first_name=f_name, last_name=l_name, phone=phone, cover=cover_letter, cv=cv)
+            application = JobApplication(job_id=job, email=email, first_name=f_name, last_name=l_name, phone=phone, cover=cover_letter, cv=cv)
             application.save()
             success = "Thank you "+f_name+" for submitting your application"
             context['success'] = success

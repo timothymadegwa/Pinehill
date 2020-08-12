@@ -30,7 +30,6 @@ class Job(models.Model):
 
 class JobApplication(models.Model):
     job_id = models.ForeignKey(Job, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)

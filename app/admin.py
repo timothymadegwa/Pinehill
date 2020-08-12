@@ -20,9 +20,9 @@ class JobAdmin(admin.ModelAdmin):
 admin.site.register(Job, JobAdmin)
 
 class JobApplicationAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'first_name', 'last_name', 'email', 'phone')
-    list_display_links = ('id', 'title', 'first_name', 'last_name')
-    search_fields = ('title', 'email', 'first_name', 'last_name')
+    list_display = ('id','job_id', 'first_name', 'last_name', 'email', 'phone')
+    list_display_links = ('id', 'job_id', 'first_name', 'last_name')
+    search_fields = ('job_id', 'email', 'first_name', 'last_name')
     list_per_page = 25
 
 admin.site.register(JobApplication, JobApplicationAdmin)
