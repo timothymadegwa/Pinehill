@@ -24,15 +24,25 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" href="{% url 'index' %}">Home</a>
+               <a class="nav-link" href="{% url 'index' %}">Home</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#whoweare" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   About Us
                 </a>
                 <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
+                  {% if 'about' in request.path %}
+                  <a class=" active dropdown-item" href="{% url 'about' %}">Who We Are</a>
+                  {% else %}
                   <a class="dropdown-item" href="{% url 'about' %}">Who We Are</a>
+                  {% endif %}
+                  
+                  {% if 'team' in request.path %}
+                  <a class="active dropdown-item" href="{% url 'team' %}">The Team</a>
+                  {% else %}
                   <a class="dropdown-item" href="{% url 'team' %}">The Team</a>
+                  {% endif %}
+                  
                 </div>
               </li>
               <li class="nav-item dropdown">
@@ -40,17 +50,45 @@
                   Services
                 </a>
                 <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
+                  {% if 'investment' in request.path %}
+                  <a class="active dropdown-item" href="{% url 'investment' %}">Investment Management</a>
+                  {% else %}
                   <a class="dropdown-item" href="{% url 'investment' %}">Investment Management</a>
+                  {% endif %}
+                  
+                  {% if 'strategy' in request.path %}
+                  <a class="active dropdown-item" href="{% url 'strategy' %}">Strategy Consulting</a>
+                  {% else %}
                   <a class="dropdown-item" href="{% url 'strategy' %}">Strategy Consulting</a>
+                  {% endif %}
+                  
+                  {% if 'risk' in request.path %}
+                  <a class="active dropdown-item" href="{% url 'risk' %}">Risk and Governance</a>
+                  {% else %}
                   <a class="dropdown-item" href="{% url 'risk' %}">Risk and Governance</a>
+                  {% endif %}
+                  
+                  {% if 'capacity' in request.path %}
+                  <a class="active dropdown-item" href="{% url 'capacity' %}">Capacity Building</a>
+                  {% else %}
                   <a class="dropdown-item" href="{% url 'capacity' %}">Capacity Building</a>
+                  {% endif %}
+                  
                 </div>
               </li>
               <li class="nav-item">
+                {% if 'blogs' in request.path %}
+                <a class="nav-link active" href="{% url 'blogs' %}">Media & Blogs</a>
+                {%else%}
                 <a class="nav-link" href="{% url 'blogs' %}">Media & Blogs</a>
+                {%endif%}
               </li>
               <li class="nav-item">
+                {% if 'careers' in request.path %}
+                <a class="active nav-link" href="{% url 'careers' %}">Careers</a>
+                {% else %}
                 <a class="nav-link" href="{% url 'careers' %}">Careers</a>
+                {% endif %}
               </li>              
             </ul>    
           </div>
