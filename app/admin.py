@@ -26,3 +26,4 @@ class JobApplicationAdmin(admin.ModelAdmin):
     list_per_page = 25
 
 admin.site.register(JobApplication, JobApplicationAdmin)
+admin.site.site_header = "PineHill Website Administration"
