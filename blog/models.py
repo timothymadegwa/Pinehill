@@ -1,14 +1,20 @@
 from django.db import models
 from app.models import Team
-from ckeditor.fields import RichTextField
 from datetime import date
 
 class BlogPost(models.Model):
     author = models.ForeignKey(Team, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    slug = models.CharField(max_length=100, unique=True)
-    image = models.ImageField(upload_to='blogs/images')
-    body = RichTextField()
+    slug = models.SlugField(max_length=100, unique=True)
+    paragraph_1 = models.TextField(blank=False, null=False)
+    image_1 = models.ImageField(upload_to='blogs/images', null=True, blank=True)
+    caption_1 = models.CharField(max_length=100, blank=True, null=True)
+    paragraph_2 = models.TextField(blank=True, null=True)
+    image_2 = models.ImageField(upload_to='blogs/images', null=True, blank=True)
+    caption_2 = models.CharField(max_length=100, blank=True, null=True)
+    paragraph_3 = models.TextField(blank=True, null=True)
+    image_3 = models.ImageField(upload_to='blogs/images', null=True, blank=True)
+    caption_3 = models.CharField(max_length=100, blank=True, null=True)
     date = models.DateField(default=date.today)
     views = models.IntegerField(default=0)
     is_published = models.BooleanField(default=False)

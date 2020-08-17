@@ -3,7 +3,7 @@ from .models import ExternalBlog, Video, BlogPost
 from django.http import HttpResponse
 
 def blogs(request):
-    blogs = BlogPost.objects.filter(is_published=True)
+    blogs = BlogPost.objects.filter(is_published=True).order_by('-id')
     external = ExternalBlog.objects.filter(is_published=True)
     videos = Video.objects.filter(is_published=True)
     context = {
@@ -16,8 +16,8 @@ def blogs(request):
 def blog(request, blog_id):
     blog = get_object_or_404(BlogPost, pk=blog_id)
     blogs = BlogPost.objects
-    recent_blogs = blogs.order_by('date').exclude(id=blog_id)[:5]
-    popular_blogs = blogs.order_by('views').exclude(id=blog_id)[:5]
+    recent_blogs = blogs.order_by('-id').exclude(id=blog_id)[:3]
+    popular_blogs = blogs.order_by('-views').exclude(id=blog_id)[:3]
     views = blog.views
     blog.views = views + 1
     blog.save()
