@@ -9,6 +9,9 @@ def index(request):
 def about(request):
     return render(request, 'app/about.html')
 
+def consulting(request):
+    return render(request, 'app/consulting.html')
+
 def team(request):
     team = Team.objects.filter(is_consultant=False).order_by('rank').filter(is_published=True)
     consultants = Team.objects.filter(is_consultant=True).order_by('rank').filter(is_published=True)

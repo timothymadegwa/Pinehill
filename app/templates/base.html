@@ -40,6 +40,12 @@
                   {% else %}
                   <a class="dropdown-item" href="{% url 'about' %}">Who We Are</a>
                   {% endif %}
+
+                  {% if 'consulting' in request.path %}
+                  <a class=" active dropdown-item" href="{% url 'consulting' %}">Consultation Process</a>
+                  {% else %}
+                  <a class="dropdown-item" href="{% url 'consulting' %}">Consultation Process</a>
+                  {% endif %}
                   
                   {% if 'team' in request.path %}
                   <a class="active dropdown-item" href="{% url 'team' %}">The Team</a>
@@ -147,6 +153,11 @@
           <li>
             <p>
               <a href="{% url 'strategy' %}" style="color: white;">Strategy Consulting</a>
+            </p>
+          </li>
+          <li>
+            <p>
+              <a href="{% url 'research' %}" style="color: white;">Research Consulting</a>
             </p>
           </li>
           <li>
