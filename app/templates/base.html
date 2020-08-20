@@ -89,6 +89,12 @@
                   {% else %}
                   <a class="dropdown-item" href="{% url 'capacity' %}">Capacity Building</a>
                   {% endif %}
+
+                  {% if 'hr' in request.path %}
+                  <a class="active dropdown-item" href="{% url 'hr' %}">HR Consulting</a>
+                  {% else %}
+                  <a class="dropdown-item" href="{% url 'hr' %}">HR Consulting</a>
+                  {% endif %}
                   
                 </div>
               </li>
@@ -168,6 +174,11 @@
           <li>
             <p>
               <a href="{% url 'capacity' %}" style="color: white;">Capacity Building</a>
+            </p>
+          </li>
+          <li>
+            <p>
+              <a href="{% url 'hr' %}" style="color: white;">HR Consulting</a>
             </p>
           </li>
         </ul>

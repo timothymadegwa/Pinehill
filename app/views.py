@@ -34,6 +34,9 @@ def research(request):
 def capacity(request):
     return render(request, 'app/capacity.html')
 
+def hr(request):
+    return render(request, 'app/hr.html')
+
 def media(request):
     return render(request, 'app/media.html')
 
