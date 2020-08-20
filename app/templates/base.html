@@ -65,6 +65,12 @@
                   {% else %}
                   <a class="dropdown-item" href="{% url 'strategy' %}">Strategy Consulting</a>
                   {% endif %}
+
+                  {% if 'research' in request.path %}
+                  <a class="active dropdown-item" href="{% url 'research' %}">Research Consulting</a>
+                  {% else %}
+                  <a class="dropdown-item" href="{% url 'research' %}">Research Consulting</a>
+                  {% endif %}
                   
                   {% if 'risk' in request.path %}
                   <a class="active dropdown-item" href="{% url 'risk' %}">Risk and Governance</a>

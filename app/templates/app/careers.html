@@ -25,18 +25,10 @@
                 <h4 class="text-center text-info"><strong>{{ job.title }}</strong></h4>
                 <h5><em>Closing Date: {{ job.closing }} at 23:59 (E.A.T)</em></h5><hr>
                 <h3 class=" text-info"><strong>Job Description</strong></h3><hr>
-                <ol>
-                {% for description in job.description.split %}
-                <li>{{description}}</li>
-                {% endfor %}
-                </ol>
+                <p>{{job.description}}</p>
                 
                 <h3 class=" text-info"><strong>Job Requirements</strong></h3><hr>
-                <ol>
-                  {% for requirement in job.requirements.split %}
-                  <li>{{requirement}}</li>
-                  {% endfor %}
-                </ol>
+                  <p>{{job.requirements | safe}}</p>
                 {% if current_date > job.closing %}
                 <p><a class="btn btn-info btn-lg disabled" href="#" role="button">Apply</a>
                 </p>

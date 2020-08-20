@@ -25,6 +25,9 @@ def risk(request):
 def strategy(request):
     return render(request, 'app/strategy.html')
 
+def research(request):
+    return render(request, 'app/research.html')
+
 def capacity(request):
     return render(request, 'app/capacity.html')
 
