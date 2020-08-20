@@ -13,11 +13,11 @@ def blogs(request):
     }
     return render(request, "blog/media.html", context)
 
-def blog(request, blog_id):
-    blog = get_object_or_404(BlogPost, pk=blog_id)
+def blog(request, slug):
+    blog = get_object_or_404(BlogPost, slug=slug)
     blogs = BlogPost.objects
-    recent_blogs = blogs.order_by('-id').exclude(id=blog_id)[:3]
-    popular_blogs = blogs.order_by('-views').exclude(id=blog_id)[:3]
+    recent_blogs = blogs.order_by('-id').exclude(slug=slug)[:3]
+    popular_blogs = blogs.order_by('-views').exclude(slug=slug)[:3]
     views = blog.views
     blog.views = views + 1
     blog.save()
