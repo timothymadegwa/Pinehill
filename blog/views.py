@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from .models import ExternalBlog, Video, BlogPost
 from django.http import HttpResponse
 
-def blogs(request):
-    blogs = BlogPost.objects.filter(is_published=True).order_by('-id')
+def media(request):
+    blogs = BlogPost.objects.filter(is_published=True).order_by('-id')[:3]
     external = ExternalBlog.objects.filter(is_published=True)
     videos = Video.objects.filter(is_published=True)
     context = {
@@ -12,6 +12,13 @@ def blogs(request):
         'videos' : videos
     }
     return render(request, "blog/media.html", context)
+
+def all_blogs(request):
+    blogs = BlogPost.objects.filter(is_published=True).order_by('-id')
+    context = {
+        'blogs' : blogs,
+    }
+    return render(request, "blog/all_blogs.html", context)
 
 def blog(request, slug):
     blog = get_object_or_404(BlogPost, slug=slug)
