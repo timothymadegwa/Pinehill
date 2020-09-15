@@ -10,6 +10,14 @@ def about(request):
     return render(request, 'app/about.html')
 
 def consulting(request):
+    if request.method == 'POST':
+        f_name = request.POST['first_name']
+        l_name = request.POST['last_name']
+        company = request.POST['company']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        message = request.POST['message']
+        return render(request, 'app/consulting.html')
     return render(request, 'app/consulting.html')
 
 def team(request):
