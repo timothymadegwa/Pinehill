@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Team, Job, JobApplication
+from .models import Team, Job, JobApplication, Contact
 
 class TeamAdmin(admin.ModelAdmin):
     list_display = ('id','name', 'email','is_published', 'rank','is_consultant', 'title')
@@ -10,6 +10,13 @@ class TeamAdmin(admin.ModelAdmin):
     list_per_page = 20
 
 admin.site.register(Team, TeamAdmin)
+
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('id','f_name', 'email','company')
+    list_display_links = ('id','f_name', 'email')
+
+admin.site.register(Contact, ContactAdmin)
+
 
 class JobAdmin(admin.ModelAdmin):
     list_display = ('id','title', 'is_published','closing')

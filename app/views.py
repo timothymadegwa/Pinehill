@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Team, Job, JobApplication
+from .models import Team, Job, JobApplication, Contact
 from datetime import date
 
 # Create your views here.
@@ -17,7 +17,13 @@ def consulting(request):
         email = request.POST['email']
         phone = request.POST['phone']
         message = request.POST['message']
-        return render(request, 'app/consulting.html')
+
+        contact = Contact(f_name=f_name, l_name=l_name, company=company, email=email, phone=phone, message=message)
+        contact.save()
+        context = {
+            'message' : f_name + ', Thankyou for contacting us, We will get back to you shortly'
+        }
+        return render(request, 'app/consulting.html', context)
     return render(request, 'app/consulting.html')
 
 def team(request):
