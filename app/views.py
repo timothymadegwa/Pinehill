@@ -66,8 +66,9 @@ def careers(request):
         l_name = request.POST['last_name']
         email = request.POST['email']
         phone = request.POST['phone']
-        cv = request.POST['cv']
-        if cv.endswith('.pdf'):
+        cv = request.FILES['cv']
+        
+        if cv.name.endswith('.pdf'):
             talent = TalentPool(email=email, first_name=f_name, last_name=l_name, phone=phone, cv=cv)
             talent.save()
             success = "Thank you "+f_name+" for submitting your CV"

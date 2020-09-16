@@ -47,7 +47,7 @@
                 <div class="col-12">
                   <h3 class="text-center text-info"><strong>TALENT POOL</strong></h3><hr>
                   <p>Have you not found a job that is suitable for you in our open jobs? Submit your CV to our talent pool and we shall contact you when a job is available.</p><br>
-                  <form action="{%  url 'careers' %}" method="post">
+                  <form action="{%  url 'careers' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                           <div class="form-row">
                             
