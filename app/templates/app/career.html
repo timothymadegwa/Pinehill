@@ -31,7 +31,7 @@
 <div class="collapse" id="collapseJob">
   
     <div class="card card-body">
-        <form action="{%  url 'career' job.id %}" method="post">
+        <form action="{%  url 'career' job.id %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
                 <div class="form-row">
                   <div class="form-group col-md-12">

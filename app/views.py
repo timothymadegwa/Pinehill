@@ -90,9 +90,9 @@ def career(request, id):
         l_name = request.POST['last_name']
         email = request.POST['email']
         phone = request.POST['phone']
-        cover_letter = request.POST['cover']
-        cv = request.POST['cv']
-        if cover_letter.endswith('.pdf') and cv.endswith('.pdf'):
+        cover_letter = request.FILES['cover']
+        cv = request.FILES['cv']
+        if cover_letter.name.endswith('.pdf') and cv.name.endswith('.pdf'):
             job = Job.objects.filter(title__iexact=title)[0]
             application = JobApplication(job_id=job, email=email, first_name=f_name, last_name=l_name, phone=phone, cover=cover_letter, cv=cv)
             application.save()
