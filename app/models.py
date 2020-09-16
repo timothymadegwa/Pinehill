@@ -41,6 +41,17 @@ class Job(models.Model):
     def __str__(self):
         return self.title
 
+class TalentPool(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100)
+    cv = models.FileField(upload_to='jobs/talent/cv')
+
+    def __str__(self):
+        return self.first_name
+
+
 class JobApplication(models.Model):
     job_id = models.ForeignKey(Job, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=100)

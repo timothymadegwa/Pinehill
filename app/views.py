@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Team, Job, JobApplication, Contact
+from django.shortcuts import render, get_object_or_404,redirect
+from .models import Team, Job, JobApplication, Contact, TalentPool
 from datetime import date
 
 # Create your views here.
@@ -62,6 +62,28 @@ def careers(request):
         'current_date' : current_date
     }
     if request.method == 'POST':
+        f_name = request.POST['first_name']
+        l_name = request.POST['last_name']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        cv = request.POST['cv']
+        if cv.endswith('.pdf'):
+            talent = TalentPool(email=email, first_name=f_name, last_name=l_name, phone=phone, cv=cv)
+            talent.save()
+            success = "Thank you "+f_name+" for submitting your CV"
+            context['success'] = success
+        else:
+            error = f_name+" , Please ensure the files that you uploaded are in pdf format!"
+            context['errors'] = error
+        return render(request, 'app/careers.html', context)
+    
+    return render(request, 'app/careers.html', context)
+
+def career(request, id):
+    job = get_object_or_404(Job, id=id)
+    current_date = date.today()
+    context = {'job': job, 'current_date' : current_date}
+    if request.method == 'POST':
         title = request.POST['job_title']
         f_name = request.POST['first_name']
         l_name = request.POST['last_name']
@@ -78,6 +100,11 @@ def careers(request):
         else:
             error = f_name+" , Please ensure the files that you uploaded are in pdf format!"
             context['errors'] = error
-            return render(request, 'app/careers.html', context)
+        return redirect('career', id=id)
+    return render(request, 'app/career.html', context)
 
-    return render(request, 'app/careers.html', context)
+def events(request):
+    return render(request, 'app/events.html')
+
+def event(request, slug):
+    return render(request, 'app/event.html')

@@ -4,6 +4,16 @@
 
 {% block content %}
         <div class="container">
+          {% if errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ errors}}
+        </div><br>
+    {% endif %}
+    {% if success %}
+        <div class="alert alert-success" role="alert">
+            {{ success}}
+        </div><br>
+        {% endif %}
             <div>
                 <h2 class="text-center text-info"><strong>CAREER OPPORTUNITIES</strong></h2><hr>
                 <p>Pine-Hill Limited is an Equal Opportunity Employer and is committed to the principle of equal employment opportunity 
@@ -11,83 +21,63 @@
                   and is committed to abiding by the laws or regulations in the locations where we operate.</p>
                   <h3 class="text-center text-info"><strong>OPEN JOBS</strong></h3><hr>
                 {% if jobs %}
-                {% if errors %}
-                    <div class="alert alert-danger" role="alert">
-                        {{ errors}}
-                      </div><br>
-                  {% endif %}
-                  {% if success %}
-                    <div class="alert alert-success" role="alert">
-                        {{ success}}
-                      </div><br>
-                  {% endif %}
+                
                   {% for job in jobs %}
-                <h4 class="text-center text-info"><strong>{{ job.title }}</strong></h4>
-                <h5><em>Closing Date: {{ job.closing }} at 23:59 (E.A.T)</em></h5><hr>
-                <h3 class=" text-info"><strong>Job Description</strong></h3><hr>
-                <p>{{job.description}}</p>
-                
-                <h3 class=" text-info"><strong>Job Requirements</strong></h3><hr>
-                  <p>{{job.requirements | safe}}</p>
-                {% if current_date > job.closing %}
-                <p><a class="btn btn-info btn-lg disabled" href="#" role="button">Apply</a>
-                </p>
-                {% else %}
-                <p><a class="btn btn-info btn-lg" data-toggle="collapse" href="#collapseJob" role="button" aria-expanded="false" aria-controls="collapseJob">Apply</a>
-                </p>
-                
-                <div class="collapse" id="collapseJob">
-                  
-                    <div class="card card-body">
-                        <form action="{%  url 'careers' %}" method="post">
-                          {% csrf_token %}
-                                <div class="form-row">
-                                  <div class="form-group col-md-12">
-                                    <label for="firstName">Job Title</label>
-                                    <input type="text" class="form-control" readonly value="{{job.title}}" id="jobTitle" name="job_title">
-                                  </div>
-                                  <div class="form-group col-md-6">
-                                    <label for="firstName">First Name</label>
-                                    <input type="text" class="form-control" id="firstName" name="first_name" required>
-                                  </div>
-                                  <div class="form-group col-md-6">
-                                    <label for="lastName">Last Name</label>
-                                    <input type="text" class="form-control" id="lastName" name="last_name" required>
-                                  </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                      <label for="email">E-Mail Address</label>
-                                      <input type="email" class="form-control" id="email" name="email" required>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                      <label for="phone">Phone Number</label>
-                                      <input type="phone" class="form-control" id="phone" name="phone" required>
-                                    </div>
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="coverLetter">Attach Cover letter <em class="text-danger">(Only pdf files are allowed, i.e. JOHN_DOE_COVER_LETTER.pdf)</em></label>
-                                    <input type="file" class="form-control-file" name="cover" id="coverLetter" accept=".pdf" required>
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="cv">Attach CV <em class="text-danger">(Only pdf files are allowed, i.e. JOHN_DOE_CV.pdf)</em></label>
-                                    <input type="file" class="form-control-file" name="cv" id="cv" accept=".pdf" required>
-                                  </div>
-                                  {% if current_date > job.closing %}                                
-                                <button type="submit" class="btn btn-info btn-lg disabled">Submit Application</button> 
-                                  {% else %}
-                                <button type="submit" class="btn btn-info btn-lg">Submit Application</button>
-                                  {% endif %}                       
-                            </div>
-                          </form>  
-                    </div><hr>
-                    {% endif %}
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static">
+                          <h4 class="mb-0 text-primary"><strong>{{ job.title }}</strong></h4><br>
+                          <div class="mb-1 text-muted">Posted <i class="fa fa-calendar" aria-hidden="true"></i> : {{job.posted}}</div>
+                          <p class="card-text text-muted">Closing Date <i class="fa fa-calendar" aria-hidden="true"></i> : {{job.closing}} at 23:59 (E.A.T)</p>
+                          <a href="{% url 'career' job.id %}" class="stretched-link">View Job Posting</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
                     {% endfor %}
                     {% else %}
                     <div class="col-md-12">
                       <p><h3>No open jobs to display</h3></p>
                     </div>
                     {% endif %}
+                </div><hr>
+                <div class="col-12">
+                  <h3 class="text-center text-info"><strong>TALENT POOL</strong></h3><hr>
+                  <p>Have you not found a job that is suitable for you in our open jobs? Submit your CV to our talent pool and we shall contact you when a job is available.</p><br>
+                  <form action="{%  url 'careers' %}" method="post">
+                    {% csrf_token %}
+                          <div class="form-row">
+                            
+                            <div class="form-group col-md-6">
+                              <label for="firstName">First Name</label>
+                              <input type="text" class="form-control" id="firstName" name="first_name" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="lastName">Last Name</label>
+                              <input type="text" class="form-control" id="lastName" name="last_name" required>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                              <div class="form-group col-md-6">
+                                <label for="email">E-Mail Address</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="phone">Phone Number</label>
+                                <input type="phone" class="form-control" id="phone" name="phone" required>
+                              </div>
+                            </div>
+                            
+                            <div class="form-group">
+                              <label for="cv">Attach CV <em class="text-danger">(Only pdf files are allowed, i.e. JOHN_DOE_CV.pdf)</em></label>
+                              <input type="file" class="form-control-file" name="cv" id="cv" accept=".pdf" required>
+                            </div>
+                          <button type="submit" class="btn btn-info btn-lg">Submit</button>                    
+                      </div>
+                    </form>
                 </div>
             </div>
         </div>

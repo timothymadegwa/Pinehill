@@ -14,5 +14,9 @@ urlpatterns = [
     path('capacity', views.capacity, name='capacity'),
     path('hr', views.hr, name='hr'),
     path('media', views.media, name='media'),
-    path('careers', views.careers, name='careers'),   
+    path('careers', views.careers, name='careers'),
+    path('career/<int:id>', views.career, name='career'),
+    path('events/', views.events, name='events'),
+    path('event/<str:slug>', views.event, name='event'),
+    
 ]
