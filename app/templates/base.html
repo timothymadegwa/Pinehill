@@ -126,6 +126,13 @@
       {% block content %}
 
       {% endblock content %}
+      <script>
+        setTimeout(function(){
+          if($('#msg').length > 0) {
+            $('#msg').remove();
+          }
+        }, 5000)
+      </script>
   <!-- Footer -->
 <footer class="page-footer font-large special-color-dark pt-4 bg-primary" style="color: white; font-family: Candara; font-size: large;">
 

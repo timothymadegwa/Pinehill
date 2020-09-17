@@ -4,16 +4,8 @@
 
 {% block content %}
 <div class="container">
-    {% if errors %}
-        <div class="alert alert-danger" role="alert">
-            {{ errors}}
-        </div><br>
-    {% endif %}
-    {% if success %}
-        <div class="alert alert-success" role="alert">
-            {{ success}}
-        </div><br>
-        {% endif %}
+    {% include '_partials/messages.html' %}
+    
     <h4 class="text-center text-info"><strong>{{ job.title }}</strong></h4>
 <h5><em>Closing Date: {{ job.closing }} at 23:59 (E.A.T)</em></h5><hr>
 <h3 class=" text-info"><strong>Job Description</strong></h3><hr>

@@ -4,16 +4,7 @@
 
 {% block content %}
         <div class="container">
-          {% if errors %}
-        <div class="alert alert-danger" role="alert">
-            {{ errors}}
-        </div><br>
-    {% endif %}
-    {% if success %}
-        <div class="alert alert-success" role="alert">
-            {{ success}}
-        </div><br>
-        {% endif %}
+          {% include '_partials/messages.html'%}
             <div>
                 <h2 class="text-center text-info"><strong>CAREER OPPORTUNITIES</strong></h2><hr>
                 <p>Pine-Hill Limited is an Equal Opportunity Employer and is committed to the principle of equal employment opportunity 

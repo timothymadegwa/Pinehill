@@ -6,11 +6,7 @@
         
 
         <div class="container">
-          {% if message %}
-                    <div class="alert alert-success" role="alert">
-                        {{ message }}
-                      </div><br>
-                  {% endif %}
+          {% include '_partials/messages.html' %}
             <h2 class="text-center text-info"><strong>CONSULTATION PROCESS</strong></h2><hr>
             <p>Consulting is all about assisting another organization, group, team or individual to transform business from one state to another.
                 The consulting process involves assisting in such transformations predefined by the management or the individual concerned. 

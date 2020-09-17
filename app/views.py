@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Team, Job, JobApplication, Contact, TalentPool
 from datetime import date
+from django.contrib import messages 
 
 # Create your views here.
 def index(request):
@@ -20,10 +21,9 @@ def consulting(request):
 
         contact = Contact(f_name=f_name, l_name=l_name, company=company, email=email, phone=phone, message=message)
         contact.save()
-        context = {
-            'message' : f_name + ', Thankyou for contacting us, We will get back to you shortly'
-        }
-        return render(request, 'app/consulting.html', context)
+        message = 'Thankyou for contacting us '+f_name+', We will get back to you shortly'
+        messages.success(request, message)
+        return render(request, 'app/consulting.html')
     return render(request, 'app/consulting.html')
 
 def team(request):
@@ -71,11 +71,11 @@ def careers(request):
         if cv.name.endswith('.pdf'):
             talent = TalentPool(email=email, first_name=f_name, last_name=l_name, phone=phone, cv=cv)
             talent.save()
-            success = "Thank you "+f_name+" for submitting your CV"
-            context['success'] = success
+            message = "Thank you "+f_name+" for submitting your CV"
+            messages.success(request, message)
         else:
-            error = f_name+" , Please ensure the files that you uploaded are in pdf format!"
-            context['errors'] = error
+            message = f_name+" , Please ensure the files that you uploaded are in pdf format!"
+            messages.error(request, message)
         return render(request, 'app/careers.html', context)
     
     return render(request, 'app/careers.html', context)
@@ -96,11 +96,11 @@ def career(request, id):
             job = Job.objects.filter(title__iexact=title)[0]
             application = JobApplication(job_id=job, email=email, first_name=f_name, last_name=l_name, phone=phone, cover=cover_letter, cv=cv)
             application.save()
-            success = "Thank you "+f_name+" for submitting your application"
-            context['success'] = success
+            message = "Thank you "+f_name+" for submitting your application"
+            messages.success(request, message)
         else:
-            error = f_name+" , Please ensure the files that you uploaded are in pdf format!"
-            context['errors'] = error
+            message = f_name+" , Please ensure the files that you uploaded are in pdf format!"
+            messages.error(request, message)
         return redirect('career', id=id)
     return render(request, 'app/career.html', context)
 
