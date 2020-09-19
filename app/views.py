@@ -104,8 +104,8 @@ def career(request, id):
         return redirect('career', id=id)
     return render(request, 'app/career.html', context)
 
-def events(request):
-    return render(request, 'app/events.html')
+def trainings(request):
+    return render(request, 'app/trainings.html')
 
-def event(request, slug):
-    return render(request, 'app/event.html')
+def training(request, slug):
+    return render(request, 'app/training.html')
