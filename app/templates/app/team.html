@@ -21,7 +21,21 @@
                 <div class="row featurette">
                   <div class="col-md-7">
                     <h2 class="featurette-heading">{{ employee.name}} <br><span class="text-muted">{{ employee.title }}</span></h2>
-                    <p class="lead">{{ employee.profile }}</p> 
+                    {% if employee.linkedin %}
+                    <div>
+                      <a class="btn-floating btn-li mx-1" href="{{employee.linkedin}}" target="_blank">
+                        <i class="fab fa-linkedin-in fa-lg"> </i>
+                      </a>
+                    </div>
+                    {% endif %}
+                    <hr>
+                    <p >{{ employee.profile }}</p>
+                    {% if employee.hobbies %}
+                    <div>
+                      <h4 class="text-muted"><u>Hobbies</u></h4>
+                      <p>{{ employee.hobbies }}</p>                     
+                    </div>
+                    {% endif %}
                   </div>
                   <div class="col-md-5">
                     <img class="featurette-image mx-auto img-thumbnail shadow-lg" src="{{ employee.photo.url}}"  height="300" width="350" alt="Generic placeholder image">
@@ -42,7 +56,21 @@
                <div class="row featurette">
                  <div class="col-md-7 order-md-2">
                    <h2 class="featurette-heading">{{ employee.name}}<br> <span class="text-muted">{{ employee.title }}</span></h2>
-                   <p class="lead">{{ employee.profile }}</p>
+                   {% if employee.linkedin %}
+                    <div>
+                      <a class="btn-floating btn-li mx-1" href="{{employee.linkedin}}" target="_blank">
+                        <i class="fab fa-linkedin-in fa-lg"> </i>
+                      </a>
+                    </div>
+                    {% endif %}
+                    <hr>
+                   <p>{{ employee.profile }}</p>
+                   {% if employee.hobbies %}
+                    <div>
+                      <h4 class="text-muted"><u>Hobbies</u></h4>
+                      <p>{{ employee.hobbies }}</p>                     
+                    </div>
+                    {% endif %}
                  </div>
                  <div class="col-md-5 order-md-1">
                   <img class="featurette-image mx-auto img-thumbnail shadow-lg" src="{{ employee.photo.url}}"  height="350" width="350" alt="Generic placeholder image">

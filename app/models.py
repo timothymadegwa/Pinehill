@@ -22,6 +22,8 @@ class Team(models.Model):
     profile = models.TextField()
     photo = models.ImageField(upload_to='photos/team')
     email = models.CharField(max_length=100, blank=True)
+    linkedin = models.CharField(max_length=100, blank=True, null=True)
+    hobbies = models.TextField(blank=True, null=True)
     rank = models.IntegerField()
     is_consultant = models.BooleanField(default=False)
     is_published = models.BooleanField(default=True)
