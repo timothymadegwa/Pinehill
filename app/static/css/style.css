@@ -1,3 +1,6 @@
 .card-deck .card {
     min-width: 300px;
   }
+a.footer{
+    color: white;
+  }
