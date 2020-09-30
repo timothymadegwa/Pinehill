@@ -103,9 +103,3 @@ def career(request, id):
             messages.error(request, message)
         return redirect('career', id=id)
     return render(request, 'app/career.html', context)
-
-def trainings(request):
-    return render(request, 'app/trainings.html')
-
-def training(request, slug):
-    return render(request, 'app/training.html')

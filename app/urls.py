@@ -16,7 +16,5 @@ urlpatterns = [
     path('media', views.media, name='media'),
     path('careers', views.careers, name='careers'),
     path('career/<int:id>', views.career, name='career'),
-    path('trainings/', views.trainings, name='trainings'),
-    path('training/<str:slug>', views.training, name='training'),
     
 ]
