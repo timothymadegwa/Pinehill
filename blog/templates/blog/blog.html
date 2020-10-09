@@ -5,12 +5,12 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container text-muted">
     {% if blog %}
             <div class="col-md-12 float-left">
                 <div class="text-center  justify-content-center"><br></div>
                 <h2 class="text-info text-center"><strong><u>{{blog.title}}</u></strong></h2>
-                <p class='text-muted'> Published on {{ blog.date}} by {{blog.author.name}}</p>
+                <p class='text-info'> Published on {{ blog.date}} by {{blog.author.name}}</p>
                 
                 <div>
                     <br><p>{{ blog.paragraph_1 }}</p>
@@ -53,9 +53,9 @@
                 <div>
                 <h6 class="text-info"><strong>Author</strong></h6>
                 <p>{{ blog.author.name}}</p>
-                <p class='text-muted'>{{ blog.author.title}}</p>
+                <p class='text-info'>{{ blog.author.title}}</p>
                 <img class="rounded-circle" src= '{{ blog.author.photo.url }}' loading="lazy" width="140", height="140">
-                <p class='text-muted'> Published on {{ blog.date}}</p>
+                <p class='text-info'> Published on {{ blog.date}}</p>
                 <p>{{blog.views}} View(s)</p>
                 </div><br><br><hr>
             </div>
