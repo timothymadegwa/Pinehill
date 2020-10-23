@@ -42,9 +42,9 @@
           <hr>
           <h2 class="text-center text-info"><strong>VIDEOS</strong></h2><hr>
           {% if videos %}
-          <div class="card-deck mb-3">
+          <div class="row mb-3 text-center">
           {% for video in videos %}
-            <div class="card mb-3">
+            <div class="col-md-4 mb-3">
               <iframe width="300" height="200" src="{{video.link}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               <h5><a href="{{video.link}}" target="_blank">{{video.title}}</a></h5>
             </div>
