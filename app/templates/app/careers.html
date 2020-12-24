@@ -21,7 +21,7 @@
                         <div class="col p-4 d-flex flex-column position-static">
                           <h4 class="mb-0 text-primary"><strong>{{ job.title }}</strong></h4><br>
                           <div class="mb-1 text-muted">Posted <i class="fa fa-calendar" aria-hidden="true"></i> : {{job.posted}}</div>
-                          <p class="card-text text-muted">Closing Date <i class="fa fa-calendar" aria-hidden="true"></i> : {{job.closing}} at 23:59 (E.A.T)</p>
+                          <p class="card-text text-muted">Closing Date <i class="fa fa-calendar" aria-hidden="true"></i> : {{job.closing}} (E.A.T)</p>
                           <a href="{% url 'career' job.id %}" class="stretched-link">View Job Posting</a>
                         </div>
                       </div>

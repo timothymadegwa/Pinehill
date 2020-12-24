@@ -7,12 +7,17 @@
     {% include '_partials/messages.html' %}
     
     <h4 class="text-center text-info"><strong>{{ job.title }}</strong></h4>
-<h5><em>Closing Date: {{ job.closing }} at 23:59 (E.A.T)</em></h5><hr>
+<h5><em>Closing Date: {{ job.closing }} (E.A.T)</em></h5><hr>
 <h3 class=" text-info"><strong>Job Description</strong></h3><hr>
 <p>{{job.description}}</p>
 
 <h3 class=" text-info"><strong>Job Requirements</strong></h3><hr>
   <p>{{job.requirements | safe}}</p>
+  {% if job.pdf %}
+  <div>
+    <p>Download the job posting <a href="{{job.pdf.url}}">{{ job.title }}</a></p>
+  </div>
+  {% endif %}
 {% if current_date > job.closing %}
 <p><a class="btn btn-info btn-lg disabled" href="#" role="button">Apply</a>
 </p>
