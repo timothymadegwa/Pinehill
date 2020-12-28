@@ -50,6 +50,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+SESSION_COOKIE_AGE = 3600                
+SESSION_SAVE_EVERY_REQUEST = True 
+
 CSRF_COOKIE_SECURE = True
 
 ROOT_URLCONF = 'pinehill.urls'
