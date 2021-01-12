@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404,redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Team, Job, JobApplication, Contact, TalentPool
 from datetime import date, datetime
 from django.utils import timezone
@@ -105,33 +105,36 @@ def careers(request):
 def career(request, id):
     job = get_object_or_404(Job, id=id)
     current_date = timezone.now
-    context = {'job': job, 'current_date' : current_date}
-    if request.method == 'POST':
-        title = request.POST['job_title']
-        f_name = request.POST['first_name']
-        l_name = request.POST['last_name']
-        email = request.POST['email']
-        phone = request.POST['phone']
-        cover_letter = request.FILES['cover']
-        cv = request.FILES['cv']
-        if cover_letter.name.endswith('.pdf') and cv.name.endswith('.pdf'):
-            job = Job.objects.filter(title__iexact=title)[0]
-            application = JobApplication(job_id=job, email=email, first_name=f_name, last_name=l_name, phone=phone, cover=cover_letter, cv=cv)
-            application.save()
-            send_to = ['info@pinehillconsulting.co.ke', 'recruitment@pinehillconsulting.co.ke']
-            mail_message = f"A Resume has been submitted for the {title} posiition on the website by {f_name} {l_name} {email} and phone number {phone}. Kindly check the website for further details."
-            msg = EmailMessage()
-            msg['Subject'] = f"Application for the {title} Position."
-            msg['From'] = 'webadmin@pinehillconsulting.co.ke'
-            msg['To'] = send_to
-            msg.set_content(mail_message)
-            with SMTP_SSL('mail.pinehillconsulting.co.ke' , 465) as server:
-                server.login('webadmin@pinehillconsulting.co.ke', '')
-                server.send_message(msg)
-            message = "Thank you "+f_name+" for submitting your application"
-            messages.success(request, message)
-        else:
-            message = f_name+" , Please ensure the files that you uploaded are in pdf format!"
-            messages.error(request, message)
-        return redirect('career', id=id)
+    if job.is_published:
+        context = {'job': job, 'current_date' : current_date}
+        if request.method == 'POST':
+            title = request.POST['job_title']
+            f_name = request.POST['first_name']
+            l_name = request.POST['last_name']
+            email = request.POST['email']
+            phone = request.POST['phone']
+            cover_letter = request.FILES['cover']
+            cv = request.FILES['cv']
+            if cover_letter.name.endswith('.pdf') and cv.name.endswith('.pdf'):
+                job = Job.objects.filter(title__iexact=title)[0]
+                application = JobApplication(job_id=job, email=email, first_name=f_name, last_name=l_name, phone=phone, cover=cover_letter, cv=cv)
+                application.save()
+                send_to = ['info@pinehillconsulting.co.ke', 'recruitment@pinehillconsulting.co.ke']
+                mail_message = f"A Resume has been submitted for the {title} posiition on the website by {f_name} {l_name} {email} and phone number {phone}. Kindly check the website for further details."
+                msg = EmailMessage()
+                msg['Subject'] = f"Application for the {title} Position."
+                msg['From'] = 'webadmin@pinehillconsulting.co.ke'
+                msg['To'] = send_to
+                msg.set_content(mail_message)
+                with SMTP_SSL('mail.pinehillconsulting.co.ke' , 465) as server:
+                    server.login('webadmin@pinehillconsulting.co.ke', '')
+                    server.send_message(msg)
+                message = "Thank you "+f_name+" for submitting your application"
+                messages.success(request, message)
+            else:
+                message = f_name+" , Please ensure the files that you uploaded are in pdf format!"
+                messages.error(request, message)
+            return redirect('career', id=id)
+    else:
+        return redirect('careers')
     return render(request, 'app/career.html', context)
