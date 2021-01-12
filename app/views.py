@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Team, Job, JobApplication, Contact, TalentPool
-from datetime import date
+from datetime import date, datetime
+from django.utils import timezone
 from django.contrib import messages
 from smtplib import SMTP_SSL
 from email.message import EmailMessage
@@ -68,11 +69,9 @@ def media(request):
     return render(request, 'app/media.html')
 
 def careers(request):
-    current_date = date.today()
     jobs = Job.objects.filter(is_published=True)
     context = {
         'jobs' : jobs,
-        'current_date' : current_date
     }
     if request.method == 'POST':
         f_name = request.POST['first_name']
@@ -105,7 +104,7 @@ def careers(request):
 
 def career(request, id):
     job = get_object_or_404(Job, id=id)
-    current_date = date.today()
+    current_date = timezone.now
     context = {'job': job, 'current_date' : current_date}
     if request.method == 'POST':
         title = request.POST['job_title']
