@@ -4,8 +4,8 @@ from django.http import HttpResponse
 
 def media(request):
     blogs = BlogPost.objects.filter(is_published=True).order_by('-id')[:3]
-    external = ExternalBlog.objects.filter(is_published=True)
-    videos = Video.objects.filter(is_published=True)
+    external = ExternalBlog.objects.filter(is_published=True).order_by('-id')
+    videos = Video.objects.filter(is_published=True).order_by('-id')
     context = {
         'blogs' : blogs,
         'external' : external,
