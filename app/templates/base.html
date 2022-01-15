@@ -233,11 +233,14 @@
 </footer>
   <!-- Copyright -->
   <div class="footer-copyright text-center py-3 bg-dark" style="color: white;">
-    © 2020 PineHill Consulting. All Rights Reserved<br>
+    © <span id="copyright_year"></span> PineHill Consulting. All Rights Reserved<br>
     Powered by <a href="https://aqila.co.ke" style="color: lightblue" target="_blank">Aqila</a>
   </div>
   <!-- Copyright -->
-
+  <script>
+    const d = new Date();
+    document.getElementById("copyright_year").innerHTML = d.getFullYear();
+    </script>
 
 <!-- Footer -->
 </html>
